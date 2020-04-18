@@ -6,6 +6,12 @@ const cors = require("cors");
 server.use(express.json());
 server.use(cors());
 
+// Route handlers
+const actionRoutes = require("./routes/actions/actions.js");
+const projectRoutes = require("./routes/projects/projects.js");
+server.use("/actions", actionRoutes);
+server.use("/projects", projectRoutes);
+
 // Error middleware
 server.use((err, req, res, next) => {
   console.error(err);
