@@ -10,6 +10,10 @@ const {
   getProjectActions,
 } = require("./../../data/helpers/projectModel.js");
 
+// Create an /actions subroute
+const actionRoutes = require("../actions/actions");
+router.use("/:id/actions", actionRoutes);
+
 // Route handlers
 
 // Get all the projects
@@ -27,17 +31,6 @@ router.get("/", async (req, res) => {
 router.get("/:id", validateProjectId, async (req, res) => {
   try {
     const project = await get(req.params.id);
-    res.status(200).json(project);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Could not get the project" });
-  }
-});
-
-// Get all actions on the project with that project_id
-router.get("/:id/actions", validateProjectId, async (req, res) => {
-  try {
-    const project = await getProjectActions(req.params.id);
     res.status(200).json(project);
   } catch (err) {
     console.log(err);
