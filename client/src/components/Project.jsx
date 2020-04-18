@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 // Styled components
 import styled from "styled-components";
@@ -33,35 +33,45 @@ const Card = styled.form`
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 100%;
+`;
+
 /**
  * @function Project: A component displaying the data for a single project in Projects
- * @param {*} data: An object containing the data to display 
+ * @param {*} data: An object containing the data to display
  * @returns: The JSX to render
  */
-const Project = props => {
+const Project = (props) => {
   const [actions, setActions] = useState([]);
 
   // Fetch a list of all projects from the API endpoint /projects
   useEffect(() => {
     const id = props.match.params.id;
+    console.log(id);
     const apiURL = `http://localhost:4500/projects/${id}/actions`;
     axios
       .get(apiURL)
       .then((res) => {
-        console.log("projects:", res.data);
-        setProjects(res.data);
+        console.log("actions:", res.data);
+        setActions(res.data);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  if (!data) return <h2>Loading project data...</h2>
+  if (!actions) return <h2>Loading project's action data...</h2>;
   return (
-    <Link to={`/${data?.id}`}>
-      <Card>
-        <h2>{data?.name}</h2>
-        <p>{data?.description}</p>
-      </Card>
-    </Link>
+    <Wrapper>
+      {actions?.map((action) => {
+        return (<Card>
+          <h2>{action?.description}</h2>
+          
+        </Card>)
+      })}
+    </Wrapper>
   );
 };
 

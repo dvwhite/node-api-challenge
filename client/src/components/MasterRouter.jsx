@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // Component imports
-import Project from './ProjectCard';
+import Project from './Project';
 import Projects from './../components/Projects';
 
 const MasterRouter = () => {
