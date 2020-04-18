@@ -38,7 +38,22 @@ const Card = styled.form`
  * @param {*} data: An object containing the data to display 
  * @returns: The JSX to render
  */
-const Project = ({ data }) => {
+const Project = props => {
+  const [actions, setActions] = useState([]);
+
+  // Fetch a list of all projects from the API endpoint /projects
+  useEffect(() => {
+    const id = props.match.params.id;
+    const apiURL = `http://localhost:4500/projects/${id}/actions`;
+    axios
+      .get(apiURL)
+      .then((res) => {
+        console.log("projects:", res.data);
+        setProjects(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   if (!data) return <h2>Loading project data...</h2>
   return (
     <Link to={`/${data?.id}`}>
