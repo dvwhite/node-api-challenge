@@ -62,13 +62,13 @@ const Project = (props) => {
       .catch((err) => console.error(err));
   }, []);
 
-  if (!actions) return <h2>Loading project's action data...</h2>;
+  if (!actions.length) return <h2>Loading project's action data...</h2>;
   return (
     <Wrapper>
-      {actions?.map((action) => {
-        return (<Card>
+      {actions?.map((action, idx) => {
+        return (<Card key={idx}>
           <h2>{action?.description}</h2>
-          
+          <p>{action?.notes}</p>
         </Card>)
       })}
     </Wrapper>
