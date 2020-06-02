@@ -40,13 +40,33 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+
+_David_: I learned about express Middleware, and about REST architecture.
+
+
 - [ ] Describe Middleware?
+
+
+_David_: It is software that sits in the routing between the route handler and the API that performs a variety of utility functions
+
 
 - [ ] Describe a Resource?
 
+
+_David_: A resource is data requested from the API by the client. It could be any type of data stored on a server.
+
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+
+_David_: A status code, as well as structuring the shape of the objects returned in the response in a way that assists with identifying errors, and documenting this in the README.
+
+
 - [ ] How can we partition our application into sub-applications?
+
+
+_David_: You can use routing and modularization to create multiple endpoints, and can nest them if you so choose.
+
 
 ## Minimum Viable Product
 
